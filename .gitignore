@@ -26,3 +26,4 @@ hs_err_pid*
 # IDEA Files
 .idea/
 r_DailyProgrammer_325.iml
+out/
