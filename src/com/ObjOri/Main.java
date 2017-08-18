@@ -23,7 +23,7 @@ public class Main {
             // Skip first line (instruction line)
             inputFile.readLine();
 
-            int rowNo = 0;
+            int rowNo = line - 1;
 
             while ((s = inputFile.readLine()) != null) {
                 String[] tokens = s.split(" ");
@@ -32,10 +32,10 @@ public class Main {
                 for (String c : tokens) {
                     // Write line char-by-char, ignoring spaces
                     matrix[rowNo][colNo] = c;
-//                    System.out.println(c + " written to matrix[" + rowNo + "][" + colNo + "]");
+                    System.out.println(c + " written to matrix[" + rowNo + "][" + colNo + "]");
                     colNo++;
                 }
-                rowNo++;
+                rowNo--;
             }
         } catch (IOException e) {
             e.printStackTrace();
