@@ -4,53 +4,40 @@ import java.io.*;
 
 public class Main {
 
-    public static void main(String[] args) throws FileNotFoundException {
+    public static void main(String[] args) throws IOException {
+        // Get size of maze, aka number of lines
         LineNumberReader numLines = new LineNumberReader(new FileReader("resources/input1.txt"));
-        char[][] matrix = new char[numLines.getLineNumber()][numLines.getLineNumber()];
+        numLines.skip(Long.MAX_VALUE);
 
+        // Create matrix with length and width of input maze
+        String[][] matrix = new String[numLines.getLineNumber() - 1][numLines.getLineNumber() -1];
+
+        // Write contents of input to matrix
         BufferedReader inputFile = new BufferedReader(new FileReader("resources/input1.txt"));
         String s;
 
-        int line = numLines.getLineNumber();
+        int line = numLines.getLineNumber() - 1;
         System.out.println(line);
 
         try {
+            // Skip first line (instruction line)
+            inputFile.readLine();
+
+            int rowNo = 0;
+
             while ((s = inputFile.readLine()) != null) {
                 String[] tokens = s.split(" ");
-                int i = 0;
+                int colNo = 0;
 
                 for (String c : tokens) {
-                    // Read line char-by-char, ignoring spaces
-
+                    // Write line char-by-char, ignoring spaces
+                    matrix[rowNo][colNo] = c;
+                    colNo++;
                 }
-
+                rowNo++;
             }
         } catch (IOException e) {
             e.printStackTrace();
         }
-
-        /**
-         * Original code to read each line char-by-char
-         * Not so efficient
-         */
-//        try {
-//            while ((s = inputFile.readLine()) != null) {
-//
-//                for (char c : s.toCharArray()) {
-//                    // Read line char-by-char, ignoring spaces
-//                    if (c != ' ') {
-//                        System.out.print(c);
-//
-//                    }
-//                }
-//                // Debug -- Separate by line
-//                System.out.println();
-//            }
-//        } catch (IOException e) {
-//            e.printStackTrace();
-//        }
-
-
-
     }
 }
