@@ -12,23 +12,23 @@ public class Main {
         // Create matrix with length and width of input maze
         String[][] matrix = new String[numLines.getLineNumber()][numLines.getLineNumber()];
 
-        // Write contents of input to matrix
         BufferedReader inputFile = new BufferedReader(new FileReader("resources/input1.txt"));
         String s;
-        String instruct;
+        String instructLine;
 
         int line = numLines.getLineNumber();
         System.out.println("Number of lines: " + line);
 
         try {
             // Read first line (instruction line)
-            instruct = inputFile.readLine();
-            String[] instructions = instruct.split(" ");
+            instructLine = inputFile.readLine();
+            String[] instructions = instructLine.split(" ");
             System.out.println("length of instruction: " + instructions.length);
             for (int i = 0; i < instructions.length; i++) {
-                System.out.println("Intruction " + i + ": " + instructions[i]);
+                System.out.println("Instruction " + i + ": " + instructions[i]);
             }
 
+            // Write contents of input to matrix
             int rowNo = 0;
 
             while ((s = inputFile.readLine()) != null) {
