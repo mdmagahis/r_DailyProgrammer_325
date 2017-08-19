@@ -15,13 +15,19 @@ public class Main {
         // Write contents of input to matrix
         BufferedReader inputFile = new BufferedReader(new FileReader("resources/input1.txt"));
         String s;
+        String instruct;
 
         int line = numLines.getLineNumber();
         System.out.println("Number of lines: " + line);
 
         try {
-            // Skip first line (instruction line)
-            inputFile.readLine();
+            // Read first line (instruction line)
+            instruct = inputFile.readLine();
+            String[] instructions = instruct.split(" ");
+            System.out.println("length of instruction: " + instructions.length);
+            for (int i = 0; i < instructions.length; i++) {
+                System.out.println("Intruction " + i + ": " + instructions[i]);
+            }
 
             int rowNo = 0;
 
@@ -37,6 +43,7 @@ public class Main {
                 }
                 rowNo++;
             }
+
         } catch (IOException e) {
             e.printStackTrace();
         }
