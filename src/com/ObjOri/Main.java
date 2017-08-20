@@ -50,7 +50,7 @@ public class Main {
             // instruction traversal
             int y = 0;
             // List of path thru maze
-            ListIterator path;
+            ListIterator<Coordinates> path = null;
 
             while (mazeRow != 0) {
                 // matrix column traversal
@@ -81,17 +81,46 @@ public class Main {
 //        System.out.println("0 1 2 3 4  -- columns");
     }
 
-    public static void captureNextCoordinates(String[][]matrix, int col, int row, String nextPath, ListIterator path){
+    public static void captureNextCoordinates(String[][]matrix, int col, int row, String nextPath, ListIterator<Coordinates> path){
         // Capture previous move
         int pCol = col;
         int pRow = row;
 
         // Check left   - m[col-1][row],
-        if (matrix[col-1][row] == nextPath) {
-            // Do something
+        if (matrix[col-1][row] == nextPath ) {
+            // Create new coordinate
+            Coordinates moveLeft = new Coordinates((col-1),row);
+            // Verify you are not going back to previous path location
+            if (path.hasPrevious()) {
+                if (moveLeft != path.previous()) {
+                    path.add(moveLeft);
+                }
+            }
+            // Otherwise there was no previous path location
+            else path.add(moveLeft);
         }
+
         // Check up     - m[col][row+1],
+        if (matrix[col][row+1] == nextPath) {
+            // Create new coordinate
+            Coordinates moveUp = new Coordinates(col, (row+1));
+            path.add(moveUp);
+            // No need to verify if moveUp is previous move, move up is always progress
+        }
+
         // Check right  - m[col+1][row]
+        if (matrix[col+1][row] == nextPath) {
+            // Create new coordinate
+            Coordinates moveRight = new Coordinates((col+1),row);
+            // Verify you are not going back to previous path location
+            if (path.hasPrevious()) {
+                if (moveRight != path.previous()) {
+                    path.add(moveRight);
+                }
+            }
+            // Otherwise there was no previous path location
+            else path.add(moveRight);
+        }
 
     }
 }
