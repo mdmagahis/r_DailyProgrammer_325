@@ -16,4 +16,8 @@ public class Coordinates {
         return col;
     }
 
+    public void printCoordinates() {
+        System.out.println("(" + col + "," + row + ")");
+    }
+
 }
