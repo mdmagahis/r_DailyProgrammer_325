@@ -1,6 +1,7 @@
 package com.ObjOri;
 
 import java.io.*;
+import java.util.ListIterator;
 
 public class Main {
 
@@ -44,6 +45,27 @@ public class Main {
                 rowNo++;
             }
 
+            // Code for Solving Maze
+            int mazeRow = (numLines.getLineNumber() - 1);
+            // instruction traversal
+            int y = 0;
+            // List of path thru maze
+            ListIterator path;
+
+            while (mazeRow != 0) {
+                // matrix column traversal
+                int mazeCol = 0;
+
+                // Find first instance of instruction[k] in mazeRow
+                while (matrix[mazeCol][mazeRow] != instructions[y]) {
+                    mazeCol++;
+                }
+
+
+                captureNextCoordinates(matrix, mazeCol, mazeRow, instructions[y], path);
+
+            }
+
         } catch (IOException e) {
             e.printStackTrace();
         }
@@ -57,5 +79,19 @@ public class Main {
 //        }
 //        System.out.println("---------------------");
 //        System.out.println("0 1 2 3 4  -- columns");
+    }
+
+    public static void captureNextCoordinates(String[][]matrix, int col, int row, String nextPath, ListIterator path){
+        // Capture previous move
+        int pCol = col;
+        int pRow = row;
+
+        // Check left   - m[col-1][row],
+        if (matrix[col-1][row] == nextPath) {
+            // Do something
+        }
+        // Check up     - m[col][row+1],
+        // Check right  - m[col+1][row]
+
     }
 }
