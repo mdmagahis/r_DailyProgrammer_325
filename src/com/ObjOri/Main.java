@@ -67,10 +67,13 @@ public class Main {
             start.printCoordinates();
             System.out.println("\tAdded start to part");
             li.add(start);
+
             while (mazeRow != 0) {
                 if (y < instructions.length) ++y;
                 else y = 0;
                 li = captureNextCoordinates(matrix, mazeCol, mazeRow, instructions[y], li);
+                mazeCol = li.previous().getCol();
+                mazeRow = li.previous().getRow();
             }
 
             while (li.hasNext()) {
@@ -95,9 +98,6 @@ public class Main {
     public static ListIterator<Coordinates> captureNextCoordinates(String[][]matrix, int col, int row, String nextPath, ListIterator<Coordinates> path){
         System.out.println("Inside captureNextCoordinates");
         System.out.println("col = " + col + ", row = " + row);
-        // Capture previous move
-        int pCol = col;
-        int pRow = row;
 
         // Check left   - m[row][col-1]
         if ((col != 0) && (matrix[row][col-1].equals(nextPath))) {
