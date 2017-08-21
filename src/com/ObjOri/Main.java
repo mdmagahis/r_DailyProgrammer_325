@@ -47,23 +47,28 @@ public class Main {
 
             // Code for Solving Maze
             int mazeRow = (numLines.getLineNumber() - 1);
+            System.out.println("mazeRow: " + mazeRow);
             // instruction traversal
             int y = 0;
             // List of path thru maze
             ListIterator<Coordinates> path = null;
 
+            // Find first instance of instruction[k] in bottommost row
+            int mazeCol = 0;
+            System.out.println("instructions[y]: " + instructions[y]);
+            while (!(matrix[mazeRow][mazeCol].equals(instructions[y]))) {
+                System.out.println(matrix[mazeRow][mazeCol] + " != " + instructions[y]);
+                mazeCol++;
+            }
+
             while (mazeRow != 0) {
-                // matrix column traversal
-                int mazeCol = 0;
+                path = captureNextCoordinates(matrix, mazeCol, mazeRow, instructions[y], path);
+                if (y < instructions.length) ++y;
+                else y = 0;
+            }
 
-                // Find first instance of instruction[k] in mazeRow
-                while (matrix[mazeCol][mazeRow] != instructions[y]) {
-                    mazeCol++;
-                }
-
-
-                captureNextCoordinates(matrix, mazeCol, mazeRow, instructions[y], path);
-
+            while (path.hasNext()) {
+                path.next().printCoordinates();
             }
 
         } catch (IOException e) {
@@ -81,13 +86,14 @@ public class Main {
 //        System.out.println("0 1 2 3 4  -- columns");
     }
 
-    public static void captureNextCoordinates(String[][]matrix, int col, int row, String nextPath, ListIterator<Coordinates> path){
+    public static ListIterator<Coordinates> captureNextCoordinates(String[][]matrix, int col, int row, String nextPath, ListIterator<Coordinates> path){
+        System.out.println("Inside captureNextCoordinates");
         // Capture previous move
         int pCol = col;
         int pRow = row;
 
-        // Check left   - m[col-1][row],
-        if (matrix[col-1][row] == nextPath ) {
+        // Check left   - m[row][col-1]
+        if ((col != 0) && (matrix[row][col-1].equals(nextPath))) {
             // Create new coordinate
             Coordinates moveLeft = new Coordinates((col-1),row);
             // Verify you are not going back to previous path location
@@ -98,18 +104,21 @@ public class Main {
             }
             // Otherwise there was no previous path location
             else path.add(moveLeft);
+
+            System.out.println("\tAdded moveLeft to path");
         }
 
-        // Check up     - m[col][row+1],
-        if (matrix[col][row+1] == nextPath) {
+        // Check up     - m[row-1][col]
+        if (matrix[row-1][col].equals(nextPath)) {
             // Create new coordinate
             Coordinates moveUp = new Coordinates(col, (row+1));
             path.add(moveUp);
             // No need to verify if moveUp is previous move, move up is always progress
+            System.out.println("\tAdded moveUp to path");
         }
 
-        // Check right  - m[col+1][row]
-        if (matrix[col+1][row] == nextPath) {
+        // Check right  - m[row][col+1]
+        if (matrix[row][col+1].equals(nextPath)) {
             // Create new coordinate
             Coordinates moveRight = new Coordinates((col+1),row);
             // Verify you are not going back to previous path location
@@ -120,7 +129,9 @@ public class Main {
             }
             // Otherwise there was no previous path location
             else path.add(moveRight);
+            System.out.println("\tAdded moveRight to path");
         }
-
+        System.out.println("\tExiting captureNextCoordinates()");
+        return path;
     }
 }
