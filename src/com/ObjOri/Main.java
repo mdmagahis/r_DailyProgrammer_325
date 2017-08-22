@@ -116,25 +116,24 @@ public class Main {
         System.out.println("\t\tInside captureNextCoordinates");
         System.out.println("\t\tcol = " + col + ", row = " + row);
 
+        Coordinates prevPath = null;
+        if (path.hasPrevious()) {
+            prevPath = path.previous();
+            path.next();
+        }
         // Check left   - m[row][col-1]
-        if ((col != 0) && (matrix[row][col-1].equals(nextPath))) {
+        if ((col != 0) && (matrix[row][col-1].equals(nextPath)) && !(matrix[row][col-1].equals(prevPath))) {
             // Create new coordinate
             Coordinates moveLeft = new Coordinates(row, (col-1));
             // Verify you are not going back to previous path location
-            if (path.hasPrevious()) {
-                if (moveLeft != path.previous()) {
-                    path.add(moveLeft);
-                }
-            }
-            // Otherwise there was no previous path location
-            else path.add(moveLeft);
+            path.add(moveLeft);
 
             System.out.print("\t\tAdded moveLeft to path: ");
             moveLeft.printCoordinates();
         }
 
         // Check up     - m[row-1][col]
-        if (matrix[row-1][col].equals(nextPath)) {
+        else if (matrix[row-1][col].equals(nextPath)) {
             // Create new coordinate
             Coordinates moveUp = new Coordinates((row-1), col);
             path.add(moveUp);
@@ -144,17 +143,11 @@ public class Main {
         }
 
         // Check right  - m[row][col+1]
-        if (matrix[row][col+1].equals(nextPath)) {
+        else if (matrix[row][col+1].equals(nextPath) && !(matrix[row][col+1].equals(prevPath))) {
             // Create new coordinate
             Coordinates moveRight = new Coordinates(row, (col+1));
             // Verify you are not going back to previous path location
-            if (path.hasPrevious()) {
-                if (moveRight != path.previous()) {
-                    path.add(moveRight);
-                }
-            }
-            // Otherwise there was no previous path location
-            else path.add(moveRight);
+            path.add(moveRight);
             System.out.print("\t\tAdded moveRight to path: ");
             moveRight.printCoordinates();
         }
