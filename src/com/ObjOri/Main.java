@@ -68,14 +68,31 @@ public class Main {
             System.out.println("\tAdded start to part");
             li.add(start);
 
+            System.out.println("Entering while loop...");
             while (mazeRow != 0) {
-                if (y < instructions.length) ++y;
+                System.out.print("Previous Coordinates:\t\t\t\t\t");
+                li.previous().printCoordinates();
+                li.next();
+
+                if (y < instructions.length-1) ++y;
                 else y = 0;
+                System.out.println("\tCurrent instruction: " + instructions[y]);
+
                 li = captureNextCoordinates(matrix, mazeCol, mazeRow, instructions[y], li);
+
+                System.out.print("Next coordinates added: ");
+                li.previous().printCoordinates();
+                li.next();
                 mazeCol = li.previous().getCol();
+                li.next();
                 mazeRow = li.previous().getRow();
+                li.next();
+
+                System.out.println("* -- End of while() -- * ");
             }
 
+            // Get back to beginning
+            while (li.hasPrevious()) li.previous();
             while (li.hasNext()) {
                 li.next().printCoordinates();
             }
@@ -96,8 +113,8 @@ public class Main {
     }
 
     public static ListIterator<Coordinates> captureNextCoordinates(String[][]matrix, int col, int row, String nextPath, ListIterator<Coordinates> path){
-        System.out.println("Inside captureNextCoordinates");
-        System.out.println("col = " + col + ", row = " + row);
+        System.out.println("\t\tInside captureNextCoordinates");
+        System.out.println("\t\tcol = " + col + ", row = " + row);
 
         // Check left   - m[row][col-1]
         if ((col != 0) && (matrix[row][col-1].equals(nextPath))) {
@@ -112,7 +129,8 @@ public class Main {
             // Otherwise there was no previous path location
             else path.add(moveLeft);
 
-            System.out.println("\tAdded moveLeft to path");
+            System.out.print("\t\tAdded moveLeft to path: ");
+            moveLeft.printCoordinates();
         }
 
         // Check up     - m[row-1][col]
@@ -121,8 +139,8 @@ public class Main {
             Coordinates moveUp = new Coordinates((row-1), col);
             path.add(moveUp);
             // No need to verify if moveUp is previous move, move up is always progress
+            System.out.print("\t\tAdded moveUp to path: ");
             moveUp.printCoordinates();
-            System.out.println("\tAdded moveUp to path");
         }
 
         // Check right  - m[row][col+1]
@@ -137,7 +155,8 @@ public class Main {
             }
             // Otherwise there was no previous path location
             else path.add(moveRight);
-            System.out.println("\tAdded moveRight to path");
+            System.out.print("\t\tAdded moveRight to path: ");
+            moveRight.printCoordinates();
         }
         System.out.println("\tExiting captureNextCoordinates()");
         return path;
