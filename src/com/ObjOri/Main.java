@@ -125,15 +125,11 @@ public class Main {
         while (path.hasNext()) path.next();
 
         Coordinates prevPath = null;
-        int prevCol;
-        int prevRow;
         if (path.hasPrevious()) {
             path.previous();
             if (path.hasPrevious()) {
                 System.out.print("\t\t2 moves back: " );
                 prevPath = path.previous();
-                prevCol = prevPath.getCol();
-                prevRow = prevPath.getRow();
                 prevPath.printCoordinates();
                 path.next();
             }
