@@ -20,4 +20,16 @@ public class Coordinates {
         System.out.println("(" + col + "," + row + ")");
     }
 
+    @Override
+    public boolean equals(Object other) {
+        if (!(other instanceof Coordinates)) {
+            return false;
+        }
+
+        Coordinates that = (Coordinates) other;
+
+        // Custom equality check here.
+        return (this.col == that.col)
+                && (this.row == that.row);
+    }
 }
