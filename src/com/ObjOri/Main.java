@@ -83,6 +83,8 @@ public class Main {
                 System.out.print("Next coordinates added: ");
                 li.previous().printCoordinates();
                 li.next();
+
+                // Update to current mazeCol and mazeRow
                 mazeCol = li.previous().getCol();
                 li.next();
                 mazeRow = li.previous().getRow();
@@ -123,8 +125,18 @@ public class Main {
         while (path.hasNext()) path.next();
 
         Coordinates prevPath = null;
+        int prevCol;
+        int prevRow;
         if (path.hasPrevious()) {
-            prevPath = path.previous();
+            path.previous();
+            if (path.hasPrevious()) {
+                System.out.print("\t\t2 moves back: " );
+                prevPath = path.previous();
+                prevCol = prevPath.getCol();
+                prevRow = prevPath.getRow();
+                prevPath.printCoordinates();
+                path.next();
+            }
             path.next();
         }
 
@@ -138,7 +150,7 @@ public class Main {
 
         // Check left   - m[row][col-1]
         if ((matrix[row][col-1].equals(nextPath))
-                && (!(moveLeft.equals(prevPath)))) {
+                && (!moveLeft.equals(prevPath))) {
             // Create new coordinate
             moveLeft = new Coordinates(row, (col-1));
             // Verify you are not going back to previous path location
@@ -159,7 +171,7 @@ public class Main {
 
         // Check right  - m[row][col+1]
         else if (matrix[row][col+1].equals(nextPath)
-                && (!(moveRight.equals(prevPath)))) {
+                && (!moveRight.equals(prevPath))) {
             // Create new coordinate
             moveRight = new Coordinates(row, (col+1));
             // Verify you are not going back to previous path location
