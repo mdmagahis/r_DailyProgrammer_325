@@ -28,7 +28,7 @@ public class Main {
             // Instructions to circular linked list
             CircularLinkedList instructionsLL = new CircularLinkedList();
             for (String c : instructions) {
-                instructionsLL.add(c.charAt(0));
+                instructionsLL.add(c);
             }
 
             // Write contents of input to matrix

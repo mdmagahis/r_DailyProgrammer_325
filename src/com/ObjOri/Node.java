@@ -1,9 +1,9 @@
 package com.ObjOri;
 
 public class Node {
-    char data;
+    String data;
     Node next;
-    Node (char d) {
+    Node (String d) {
         data = d;
         next = null;
     }

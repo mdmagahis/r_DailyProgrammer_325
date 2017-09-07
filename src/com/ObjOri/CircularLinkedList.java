@@ -22,7 +22,7 @@ public class CircularLinkedList {
      * Inserts data as the first node or at the end of the linked list.
      * Maintains tail
      */
-    public void insert(char data) {
+    public void insert(String data) {
         Node newNode = new Node(data);
         if(current == null) {
             current = newNode;
@@ -42,7 +42,7 @@ public class CircularLinkedList {
      *
      *
      */
-    public void add(char data) {
+    public void add(String data) {
         this.insert(data);
         this.advance();
     }
