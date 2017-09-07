@@ -28,7 +28,6 @@ public class Coordinates {
 
         Coordinates that = (Coordinates) other;
 
-        // Custom equality check here.
         return (this.col == that.col)
                 && (this.row == that.row);
     }
