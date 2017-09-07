@@ -25,6 +25,12 @@ public class Main {
             instructLine = inputFile.readLine();
             String[] instructions = instructLine.split(" ");
 
+            // Instructions to circular linked list
+            CircularLinkedList instructionsLL = new CircularLinkedList();
+            for (String c : instructions) {
+                instructionsLL.add(c.charAt(0));
+            }
+
             // Write contents of input to matrix
             int rowNo = 0;
 
