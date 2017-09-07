@@ -49,9 +49,11 @@ public class CircularLinkedList {
 
     public void printLL() {
         Node temp = current;
-        while (temp.next != tail) {
+        while (temp.next != tail.next) {
             System.out.print(temp.data + " ");
             temp = temp.next;
         }
+        System.out.print(tail.data);
+        System.out.println();
     }
 }
