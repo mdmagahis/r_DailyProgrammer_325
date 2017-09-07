@@ -40,10 +40,18 @@ public class CircularLinkedList {
      * Add Function
      * @param data
      *
-     * 
+     *
      */
     public void add(char data) {
         this.insert(data);
         this.advance();
+    }
+
+    public void printLL() {
+        Node temp = current;
+        while (temp.next != tail) {
+            System.out.print(temp.data + " ");
+            temp = temp.next;
+        }
     }
 }
