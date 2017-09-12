@@ -47,6 +47,10 @@ public class CircularLinkedList {
         this.advance();
     }
 
+    /**
+     * Print Function
+     * Uses a current node as a cursor to traverse the circular linked list
+     */
     public void printLL() {
         Node temp = current;
         while (temp.next != tail.next) {
