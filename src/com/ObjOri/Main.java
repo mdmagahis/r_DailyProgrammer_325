@@ -158,7 +158,7 @@ public class Main {
      * @param currentInstruction
      * @param path
      */
-    public static void traverse(String[][]matrix, int currentRow, int currentCol, String currentInstruction, ListIterator<Coordinates> path) {
+    public static void traverse(String[][]matrix, int currentRow, int currentCol, Node currentInstruction, ListIterator<Coordinates> path) {
 
         //Update path with previous coordinates
         Coordinates currentLocation = new Coordinates(currentRow,currentCol);
@@ -172,8 +172,8 @@ public class Main {
 
         else {
             //Check up
-            if (matrix[currentRow+1][currentCol].equals(currentInstruction)){
-//                traverse(matrix,currentRow+1, currentCol, );
+            if (matrix[currentRow+1][currentCol].equals(currentInstruction.data)){
+                traverse(matrix,currentRow+1, currentCol, currentInstruction.next, path);
             }
 
             //Check left
