@@ -54,8 +54,19 @@ public class Main {
             LinkedList<Coordinates> path = new LinkedList<Coordinates>();
             ListIterator<Coordinates> li = path.listIterator(0);
 
-            // Find first instance of instruction[k] in bottommost row
+            // Start at bottom left of maze
             int mazeCol = 0;
+            while (li.previous().getRow() != 0) {
+                // Recursive maze traversal
+
+            }
+
+
+
+
+
+            // Find first instance of instruction[k] in bottommost row
+//            int mazeCol = 0;
             while (!(matrix[mazeRow][mazeCol].equals(instructions[y]))) {
                 mazeCol++;
             }
@@ -137,5 +148,33 @@ public class Main {
             path.add(moveRight);
         }
         return path;
+    }
+
+    /**
+     * Recursive Maze Traversing Function
+     * @param matrix
+     * @param currentInstruction
+     * @param path
+     */
+    public static void traverse(String[][]matrix, String currentInstruction, ListIterator<Coordinates> path) {
+        //Base Case
+        if (path.previous().getCol() == 0) {
+            return;
+        }
+
+        else {
+            //Check up
+
+
+            //Check left
+
+
+            //Check right
+
+
+            //Check down
+
+            
+        }
     }
 }
