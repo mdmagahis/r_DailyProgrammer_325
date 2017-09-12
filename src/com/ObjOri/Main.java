@@ -59,6 +59,8 @@ public class Main {
             while (li.previous().getRow() != 0) {
                 // Recursive maze traversal
 
+                // Will need to create a new path each time
+
             }
 
 
@@ -156,15 +158,23 @@ public class Main {
      * @param currentInstruction
      * @param path
      */
-    public static void traverse(String[][]matrix, String currentInstruction, ListIterator<Coordinates> path) {
+    public static void traverse(String[][]matrix, int currentRow, int currentCol, String currentInstruction, ListIterator<Coordinates> path) {
+
+        //Update path with previous coordinates
+        Coordinates currentLocation = new Coordinates(currentRow,currentCol);
+        path.add(currentLocation);
+
         //Base Case
         if (path.previous().getCol() == 0) {
+            path.next();
             return;
         }
 
         else {
             //Check up
-
+            if (matrix[currentRow+1][currentCol].equals(currentInstruction)){
+//                traverse(matrix,currentRow+1, currentCol, );
+            }
 
             //Check left
 
@@ -174,7 +184,7 @@ public class Main {
 
             //Check down
 
-            
+
         }
     }
 }
