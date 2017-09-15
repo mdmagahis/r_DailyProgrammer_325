@@ -172,7 +172,7 @@ public class Main {
 
         else {
             //Check up
-            if (matrix[currentRow+1][currentCol].equals(currentInstruction.data)){
+            if (matrix[currentRow-1][currentCol].equals(currentInstruction.data)){
                 traverse(matrix,currentRow+1, currentCol, currentInstruction.next, path);
                 return;
             }
@@ -195,8 +195,8 @@ public class Main {
 
             //Check down
             if (currentRow != 0) {
-                if (matrix[currentRow-1][currentCol].equals(currentInstruction.data)){
-                    traverse(matrix,currentRow-1, currentCol, currentInstruction.next, path);
+                if (matrix[currentRow+1][currentCol].equals(currentInstruction.data)){
+                    traverse(matrix,currentRow+1, currentCol, currentInstruction.next, path);
                     return;
                 }
             }
