@@ -176,14 +176,12 @@ public class Main {
             //Check up
             if (matrix[currentRow-1][currentCol].equals(currentInstruction.data)){
                 traverse(matrix,currentRow+1, currentCol, currentInstruction.next, path);
-                return;
             }
 
             //Check left
             if (currentCol != 0) {
                 if (matrix[currentRow][currentCol-1].equals(currentInstruction.data)){
                     traverse(matrix,currentRow, currentCol-1, currentInstruction.next, path);
-                    return;
                 }
             }
 
@@ -191,7 +189,6 @@ public class Main {
             if (matrix.length != currentCol) {
                 if (matrix[currentRow][currentCol+1].equals(currentInstruction.data)){
                     traverse(matrix,currentRow, currentCol+1, currentInstruction.next, path);
-                    return;
                 }
             }
 
@@ -199,10 +196,9 @@ public class Main {
             if (currentRow != 0) {
                 if (matrix[currentRow+1][currentCol].equals(currentInstruction.data)){
                     traverse(matrix,currentRow+1, currentCol, currentInstruction.next, path);
-                    return;
                 }
             }
-
+            return;
         }
 
         // Dead end
