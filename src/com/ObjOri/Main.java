@@ -197,13 +197,10 @@ public class Main {
                     traverse(matrix,currentRow+1, currentCol, currentInstruction.next, path);
                 }
             }
-            return;
+            // Dead end
+            // Delete previous and return
+            path.previous();
+            path.remove();
         }
-
-        // Dead end
-        // Delete path and return
-        while (path.hasPrevious())  path.previous();
-        path = null;
-        return;
     }
 }
