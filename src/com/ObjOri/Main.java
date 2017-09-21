@@ -174,7 +174,7 @@ public class Main {
         else {
             //Check up
             if (matrix[currentRow-1][currentCol].equals(currentInstruction.data)){
-                traverse(matrix,currentRow+1, currentCol, currentInstruction.next, path);
+                traverse(matrix,currentRow-1, currentCol, currentInstruction.next, path);
             }
 
             //Check left
