@@ -167,7 +167,8 @@ public class Main {
         path.add(currentLocation);
 
         //Base Case
-        if (currentRow == 0) {
+        if (path.previous().getRow() == 0) {
+            path.next();
             return;
         }
 
